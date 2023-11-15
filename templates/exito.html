@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medic-App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@12"></script> -->
+    <script src="{{ url_for('static', filename='script.js')}}"></script>
+</head>
+<body>
+    <form action="/procesar_formulario" method="post" autocomplete="off">
+        <header>Medic-App</header>
+    
+        <div class="tab" id="tab-1">
+          <p style="padding-top: 20px;"><strong>Generación de informe:</strong> <small>Empecemos con tu información
+              general.</small> </p>
+          <div class="index-btn-wrapper">
+            <a href="{{ url_for('index') }}"><div class="index-btn">Volver</div></a>
+            <a href="{{ url_for('download') }}"><div class="index-btn">Descargar informe</div></a>
+          </div>
+        </div>
+      </form>
+</body>
+</html>

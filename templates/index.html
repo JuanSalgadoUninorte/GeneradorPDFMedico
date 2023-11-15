@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Medic-App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@12"></script> -->
+  <script src="{{ url_for('static', filename='script.js')}}"></script>
+</head>
+
+<body>
+  <form action="/procesar_formulario" method="post" autocomplete="off">
+    <header>Medic-App</header>
+
+    <div style="text-align:center;">
+      <span class="step" id="step-1">1</span>
+      <span class="step" id="step-2">2</span>
+      <span class="step" id="step-3">3</span>
+      <span class="step" id="step-4">4</span>
+      <span class="step" id="step-5">5</span>
+    </div>
+
+    <div class="tab" id="tab-1">
+      <p style="padding-top: 20px;"><strong>Información General:</strong> <small>Empecemos con tu información
+          general.</small> </p>
+      <input type="text" placeholder="Nombres" name="nombres">
+      <input type="text" placeholder="Apellidos" name="apellidos">
+      <input type="text" placeholder="Edad" name="edad">
+      <input type="text" placeholder="Altura (m)" name="altura">
+      <input type="text" placeholder="Peso (Kg)" name="peso">
+
+      <div class="index-btn-wrapper">
+        <div class="index-btn" onclick="run(1, 2);">Siguiente</div>
+      </div>
+    </div>
+
+    <div class="tab" id="tab-2">
+      <p><strong>Antencedentes</strong>:</p>
+      <small>Por favor responde a las siguientes preguntas con la mayor honestidad, estás preguntas están orientadas a identificar las enfermedades o padeceres de tus antepasados.</small>
+
+      <p><strong>Diagnósticos</strong></p>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Hipertensión arterial: <small>Un médico diagnosticó a algunp de tus antepasados con Hipertensión Arterial por tener una
+              tensión arterial de 140/90 mmHg o más.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_h_arterial" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_h_arterial" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Enfermedades Cardiovasculares: <small>Insuficiencias cardiacas, arritmias, enfermedad arterial coronaria.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_e_cardiovasculares" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_e_cardiovasculares" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Exposición a tóxicos: <small>Exposición al plomo, cadmio, mercurio y arsénico.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_e_toxicos" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_e_toxicos" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Enfermedad cerebrovascular: <small>También conocido como “derrame cerebral".</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_e_cerebrovascular" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_e_cerebrovascular" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Diabetes: <small>Un médico te ha diagnosticado diabetes mediante exámenes de sangre
+              que indican que la concentración de glucosa en la sangre está por encima
+              de los valores normales.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_diabetes" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_diabetes" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Dislipidemias: <small>Un médico te ha diagnosticado dislipidemia mediante análisis de sangre
+              que indican que los niveles de colesterol en la sangre están alterados.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_dislipidemias" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_dislipidemias" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Enfermedad renal: <small>La enfermedad renal terminal (ERT) es una insuficiencia renal que se trata con diálisis o trasplante de riñón.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_e_renal" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="antecedentes_e_renal" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="index-btn-wrapper">
+        <div class="index-btn" onclick="run(2, 1);">Anterior</div>
+        <div class="index-btn" onclick="run(2, 3);">Siguiente</div>
+      </div>
+    </div>
+
+    <div class="tab" id="tab-3">
+      <p><strong>Diagnósticos</strong></p>
+      <small>A partir de este espacio por favor, se honesto con las respuestas que darás acerca de los diagnósticos que presentes.</small>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Hipertensión arterial: <small>Un médico te ha diagnosticado con Hipertensión Arterial por tener una
+              tensión arterial de 140/90 mmHg o más.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="h_arterial" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="h_arterial" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Enfermedades Cardiovasculares: <small>Insuficiencias cardiacas, arritmias, enfermedad arterial
+              coronaria.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="e_cardiovasculares" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="e_cardiovasculares" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Exposición a tóxicos: <small>Exposición al plomo, cadmio, mercurio y arsénico.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="e_toxicos" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="e_toxicos" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Enfermedad cerebrovascular: <small>También conocido como “derrame cerebral".</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="e_cerebrovascular" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="e_cerebrovascular" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Diabetes: <small>Un médico te ha diagnosticado diabetes mediante exámenes de sangre
+              que indican que la concentración de glucosa en la sangre está por encima
+              de los valores normales.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="diabetes" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="diabetes" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Dislipidemias: <small>Un médico te ha diagnosticado dislipidemia mediante análisis de sangre
+              que indican que los niveles de colesterol en la sangre están alterados.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="dislipidemias" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="dislipidemias" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Enfermedad renal: <small>La enfermedad renal terminal (ERT) es una insuficiencia renal que se trata con diálisis o trasplante de riñón.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="e_renal" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="e_renal" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+      <div class="index-btn-wrapper">
+        <div class="index-btn" onclick="run(3, 2);">Anterior</div>
+        <div class="index-btn" onclick="run(3, 4);">Siguiente</div>
+      </div>
+    </div>
+
+    <div class="tab" id="tab-4">
+      <p><strong>Uso de medicamentos y/o sustancias:</strong></p>
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Alcohol
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="alcohol" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="alcohol" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Cocaína
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="cocaina" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="cocaina" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Anfetaminas
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="anfetaminas" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="anfetaminas" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Cafeína
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="cafeina" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="cafeina" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Antidepresivos: <small>(IMAO: Fenelzina, Isocarboxazida,Selegilina) ( IRSN: Venlafaxina, Levomilnacipran,
+              Duloxetina)( ATC: Amitriptilina, Nortriptilina).</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="antidepresivos" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="antidepresivos" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Descongestionantes: <small>(fenilefrina, pseudoefedrina)</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="descongestionantes" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="descongestionantes" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            AINES: <small>Los AINE (medicamentos antiinflamatorios no esteroides) son algunos de los analgésicos más utilizados en adultos.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="aines" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="aines" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Anticonceptivos orales: <small>Píldora que se usa para prevenir el embarazo. Contiene hormonas que impiden que los ovarios liberen óvulos</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="anticonceptivos" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="anticonceptivos" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+      <div class="index-btn-wrapper">
+        <div class="index-btn" onclick="run(4, 3);">Anterior</div>
+        <div class="index-btn" onclick="run(4, 5);">Siguiente</div>
+      </div>
+    </div>
+
+    <div class="tab" id="tab-5">
+      <p><strong>Estilo de vida</strong></p>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Consumes comidas rápidas o alimentos procesados más de 3 veces a la
+            semana. <small>(Papas fritas, embutidos como salchichas o jamones, verduras
+              enlatadas, bebidas energéticas).</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="consumo" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="consumo" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="index-btn-wrapper">
+        <div class="index-btn" onclick="run(5, 4);">Anterior</div>
+        <div class="index-btn" onclick="run(5, 6);">Siguiente</div>
+      </div>
+    </div>
+
+    <div class="tab" id="tab-6">
+      <p><strong>Valoración cefalocaudal</strong></p>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Dolor de cabeza
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="d_cabeza" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="d_cabeza" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Nerviosismo: <small>Inquietud y preocupación fuera de lo normal.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="nerviosismo" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="nerviosismo" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Sangrado por la nariz
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="sangrado" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="sangrado" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Silbido o zumbido: <small>En uno o ambos oídos que puede ser constante o ir y venir.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="s_zumbido" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="s_zumbido" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Mareo
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="mareo" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="mareo" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Visión borrosa, disminución de la agudeza visual.
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="v_borrosa" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="v_borrosa" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Palpitaciones: <small>Tu corazón late muy rápido o fuerte, como si estuviera saltando en su pecho.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="palpitaciones" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="palpitaciones" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Cansancio constante: <small>En actividades que antes podías hacer sin problema.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="cansancio" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="cansancio" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="gender-options">
+        <div class="description-container">
+          <div class="gender-description">
+            Hinchazon <small>En manos, piernas o tobillos.</small>
+          </div>
+        </div>
+        <div class="gender-radio-options">
+          <label class="gender-label">
+            <input type="radio" name="hinchazon" value="Si">
+            <span class="gender-custom-radio"></span> Si
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="hinchazon" value="No" checked>
+            <span class="gender-custom-radio"></span> No
+          </label>
+        </div>
+      </div>
+
+      <div class="index-btn-wrapper">
+        <div class="index-btn" onclick="run(6, 5);">Anterior</div>
+        <button class="index-btn" type="submit" name="submit">Calcular Riesgos</button>
+      </div>
+    </div>
+  </form>
+
+  <script>
+    // Default tab
+    $(".tab").css("display", "none");
+    $("#tab-1").css("display", "block");
+
+    function run(hideTab, showTab) {
+      if (hideTab < showTab) {
+
+        var currentTab = 0;
+        x = $('#tab-' + hideTab);
+        y = $(x).find("input")
+        for (i = 0; i < y.length; i++) {
+          if (y[i].value == "") {
+            $(y[i]).css("background", "#ffdddd");
+            return false;
+          }
+        }
+        
+      }
+
+      // Restablecer la opacidad de todos los pasos
+      for (i = 1; i <= 5; i++) {
+        $("#step-" + i).css("opacity", "0.25");
+      }
+
+      // Establecer la opacidad de los pasos completados
+      for (i = 1; i < showTab; i++) {
+        $("#step-" + i).css("opacity", "1");
+      }
+
+      // Cambiar de pestaña
+      $("#tab-" + hideTab).css("display", "none");
+      $("#tab-" + showTab).css("display", "block");
+      $("input").css("background", "#fff");
+    }
+
+  </script>
+</body>
+
+</html>
